@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>moody hackny application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Professional Background</h2>
+    <div class="section">
+        <b>Please upload a 2-minute video recording of yourself, where you introduce yourself and provide an overview of
+            your
+            professional background, with a focus on any technical roles you've had. This can include prior internships,
+            research, personal projects, student organizations, or anything else you think provides insight into your
+            technical
+            skillset.</b>
+        <br><a class="proj-link" href="video.mp4">the video</a>
+    </div>
+
+    <div class="section">
+
+        <b>Provide a link to a coding project you've built that you are most proud of. This can be a demo link or a link
+            to
+            the codebase (e.g. the repository in Github).</b>
+        <br>
+        <a class=".proj-link" href="https://chest.moodyrahman.com/help">https://chest.moodyrahman.com/help</a>
+    </div>
+    <div class="section">
+
+        <b>Provide a 1-2 paragraph description of what this project does. Describe your development approach from a
+            technical perspective: your technology choice, system architecture, and other information. </b>
+        <br>
+        <div class="response">
+            With Flask handling routing, MongoDB as the database, Jinja templates rendered HTML serverside, and Jquery
+            for
+            frontend interactivity, Chest was built piece by piece. I chose these technologies because they were all I
+            knew
+            at
+            the time. Given that I was building a tool that I hoped other people would use, along with the hype in my
+            group
+            behind the project, I did not want to potentially compromise on quality and ease-of-tweaking by using
+            something
+            I
+            was unfamiliar with. The backend was written with KISS heavily in mind. Routes that required authentication
+            had
+            a
+            Python decorator that I wrote that would only execute the route if a valid user was logged in. The Jinja
+            templates
+            also feature several macros for commonly used blocks of HTML, and utilized template inheritance for the same
+            skeletal HTML common among every page. <br><br>
+            Upon completion, the project was hosted on my personal DigitalOcean server. Gunicorn was used as the WSGI
+            server
+            for
+            it's better performance than Werkzeug that was the default. Finally, I set up a reverse proxy with Nginx to
+            forward
+            all requests to chest.moodyrahman.com to the Gunicorn instance, and Certbot to generate the HTTPS
+            certificates
+            so
+            all of my users can use it worry-free.
+        </div>
+    </div>
+
+    <div class="section">
+
+
+        <b>Why did you build this project? What about it matters to you? </b>
+        <br>
+
+        <div class="response">
+            When the pandemic began, my friends and I threw ourselves into Dungeons and Dragons to maintain our sanity.
+            In
+            reaction to the lack of homebrew-centric and lightweight online inventory mangers for TRPG's, I built Chest.
+            It's
+            been a mainstay in our campaigns since then and has greatly alleviated the hassle of playing D&D online.
+        </div>
+    </div>
+
+    <div class="section">
+        <b>If you could re-build this project from scratch, what would you do differently? </b>
+        <br>
+        <div class="response">
+            Given that I am now familiar with a plethora of tech stacks, I would rewrite Chest in ReactJS for
+            streamlined
+            interactive elements and more concise frontend code. The backend would also be rewritten in Express, given
+            that
+            middleware functions are much more concise than decorators to achieve the same effect.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Personal Statements</h2>
+        <b>There are many different summer programs available to university students looking to improve their technical
+            skills and intern at a tech company. Why apply to HackNY specifically?</b>
+        <br>
+        <div class="response">
+            I want to work in a fast-paced, more intimate environment that is afforded by being involved with a startup,
+            and
+            gain exposure to that environment. The idea of building a project that will have an immediate impact on the
+            world
+            around me is also greatly appealing.
+        </div>
+    </div>
+
+    <div class="section">
+        <b> One of the distinguishing features of the HackNY fellowship program is its focus on matching fellows with
+            startups, as opposed to larger organizations. How will your background and skillset enable you to thrive in
+            a
+            startup environment? </b>
+        <br>
+        <div class="response">
+            I have very strong foundational knowledge in computer science and programming, especially when it comes to
+            working
+            in Linux and quickly parsing documentation. Thanks to that, I can pick up new technologies and libraries
+            very
+            quickly. I strongly consider myself to be language agnostic, and that it's important to select the proper
+            language
+            for the task at hand. As such, I can remain on the cutting edge of what's new in technology and quickly
+            integrate
+            myself into the stack of any startup- regardless of their language.
+        </div>
+    </div>
+
+    <div class="section">
+        <b>Continuing from last year, in an initiative led by our alumNY which reflects our community values, the 2022
+            hackNY Fellows will have a chance to participate in a project which promotes positive social impact,
+            especially
+            around increasing diversity and inclusivity in tech. Tell us about social good initiatives that you are
+            excited
+            about or problems you would like to see solved by social impact projects, why they are important to you, and
+            what you would hope to accomplish with social good as a part of hackNY and beyond. </b>
+        <br>
+        <div class="response">
+            As a result of systematic inequalities in our society, there are several groups from impoverished areas who
+            have
+            no
+            exposure to careers in technology and had no chance to attain the education for such a career. Impoverished
+            is a
+            very broad word, and I'm choosing to encompass both groups that live in the US in redlined neighborhoods, as
+            well as
+            people living in underdeveloped regions of the world. I would want to be a part of a social impact project
+            that
+            would encourage tech literacy among all communities and enable more people to be successful software
+            engineers.
+        </div>
+    </div>
+
+    <div class="section">
+        <b> You are on a casual stroll to your favorite cafe when you suddenly notice your treasured fictional
+            character,
+            whom you decide to invite for brunch. Paint the scene for us, letting us know who the character is, how you
+            identify with them, what you order for the table, etc. </b>
+        <br>
+        <br>
+        <div class="highlight-warning">
+
+            <i>you might be wondering: moody, did you seriously write a destiny 2 self-insert fanfiction?</i>
+            <br>
+            <br>
+            <i>yes, yes i did :3</i>
+        </div>
+        <br>
+        <br>
+        <div class="response">
+
+            A bright neon sign blaring "Matto" cuts through the thick Upper East Side fog. I'm walking towards it, like
+            a
+            moth
+            drawn towards a caffeinated flame. As I near the entrance I hear a familiar voice laughing. I take a step
+            back,
+            in
+            disbelief of the situation I'm in. I double-check my surroundings, confirming that I'm still in New York
+            City.
+            The
+            rush of cars past me on Second Avenue and the late afternoon bustle is the same as any Wednesday. <br><br>
+
+            I gingerly push the door open, as a quiet bell announces my entrance. Lo and behold, the gentle whirring of
+            robotic
+            joints and capricious laughter belonging to none other than Cayde, the Hunter Vanguard from the Destiny
+            franchise.
+            I'm standing there slack jawed, utterly cowed by the hyper-advanced robot housing a consciousness. Cayde
+            grins
+            at me
+            as if I'm overreacting in this situation. The barista shoots me a mirthful look, their disbelief clearly
+            suspended
+            long ago. I stand at the counter searching for words. <br><br>
+
+            "How does some coffee and a chopped cheese sound for a little bit of your time?"
+            "Time's something I have a little too much of, and you prehistorians seem nice enough. Tell me more of this
+            chopped
+            cheese though" <br><br>
+
+            We walk a few blocks down as I slowly grow more comfortable with the Exo walking past me. Cayde explains
+            that he
+            was
+            shooting down a transfer gate in the Vault of Glass and the resultant explosion sent him here. "I'm hoping
+            that
+            the
+            people back in the Last City can find me though, it's odd that the Vex are running a simulation of this era”.
+            <br><br>
+
+            I'm taken aback at this fact, “You're telling me that this is all a simulation right now?” <br><br>
+
+            “Sure, but Vex simulations have it accurate down to the last atom: the illusion of the perception of self is
+            the
+            same for you and for anyone else here- at least that's what someone smarter than me told me to say” <br><br>
+
+            I'm thinking to myself, this really is Cayde-6, all of their wit and humor. It's clear that he wants to
+            leave
+            soon,
+            but he knows that there isn't much he can do in this situation aside from waiting for his comrades to pull
+            him
+            out.
+            <br><br>
+
+            A waft of fragrant steam hits us in the face as we walk into the bodega. The buy behind the counter wipes
+            the
+            grease
+            off the spatula on his apron while staring at the robot clunking into the store. <br><br>
+
+            “You know, I actually admire you quite a bit, underneath all the joking you do, you're actually quite
+            diligent
+            about
+            being the leader of the Hunters, no?” <br><br>
+            “And who are you to know about me being the Vanguard?” <br><br>
+            “Funnily enough, you're actually quite beloved in this world- everyone was hurt when we witnessed your
+            death”
+            <br><br>
+            “Oh? I'm quite belo- wait, run that by me one more time? Witnessed my death?” <br><br>
+            I smirk and reply without missing a beat, “Listen, I'm just a simulation, what do I know?” <br><br>
+        </div>
+        <div class="section">
+
+
+
+            <br>
+            <br>
+            <br>
+            <h2>Startup Preferences</h2>
+            <b> What sectors would you especially like to work in? (e.g., fashion, data science, media, art,
+                education...)
+            </b>
+            <div class="response">
+                Cloud Infrastructure
+            </div>
+            <br>
+            <br>
+            <b>What sectors would you prefer not to work in? </b>
+            <div class="response">
+                Advertising
+            </div>
+            <br>
+            <br>
+            <b> List five NYC startups you'd love to work at. If you're accepted, we'll do our best to match you with
+                one of
+                your favorites. If they're unavailable, we'll use this list to help make a great startup match for you.
+            </b>
+            <div class="response">
+                Business Insider, Canvas, CitiBike, Etsy, Giphy
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

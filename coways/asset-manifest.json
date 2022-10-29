@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/coways/static/css/main.073c9b0a.css",
+    "main.js": "/coways/static/js/main.8e278b83.js",
+    "static/js/787.ef02005d.chunk.js": "/coways/static/js/787.ef02005d.chunk.js",
+    "index.html": "/coways/index.html",
+    "main.073c9b0a.css.map": "/coways/static/css/main.073c9b0a.css.map",
+    "main.8e278b83.js.map": "/coways/static/js/main.8e278b83.js.map",
+    "787.ef02005d.chunk.js.map": "/coways/static/js/787.ef02005d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.8e278b83.js"
+  ]
+}

@@ -1,0 +1,64 @@
+@import url("/static/style.css");
+@import url("/static/colors.css");
+
+body {
+    background:var(--bg-color);
+    font-size: 1rem;
+}
+.response{
+    padding-left: 4%;
+    font-size: 1rem;
+    color: var(--text-color)
+}
+
+@media (max-width: 600px) {
+    body{
+        margin-left: 10px; 
+        margin-right: 10px; 
+        margin-top: 50px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1.1rem;
+    }
+    .response{
+        padding-left: 4%;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 600px) {
+    body{
+        margin-left: 5%;
+        margin-top: 5%;
+        font-family: 'Roboto Mono', monospace;
+        
+    }
+    .response{
+        padding-left: 2%;
+    }
+}
+
+@keyframes blink-warning {
+    0% {
+        background: red;
+        color:black;
+    }
+    49.99% {
+        background: red;
+        color:black;
+    }
+    50% {
+        background: black;
+        color: red;
+    }
+    100% {
+        background: black;
+        color: red;
+    }
+}
+
+.highlight-warning {
+    display:inline;
+    animation-name: blink-warning;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;    
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-color: #cdcdc2;
+            --text-color: #23324d;
+            --icons: #34425c;
+        }
+
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Roboto Mono', monospace;
+        }
+
+
+        @keyframes blink {
+            0% {
+                background: var(--bg-color);
+                color: var(--text-color);
+            }
+
+            49.99% {
+                background: var(--bg-color);
+                color: var(--text-color);
+            }
+
+            50% {
+                background: var(--text-color);
+                color: var(--bg-color);
+            }
+
+            100% {
+                background: var(--text-color);
+                color: var(--bg-color);
+            }
+        }
+
+        .highlight {
+            display: inline;
+            animation-name: blink;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
+    <title>Page Not Found</title>
+</head>
+
+<body>
+    <div class="highlight" style="position: absolute; top: 70%; left: 20%;">
+        404 | sorry buddy, nothing here
+    </div>
+    <a href="/" style="position: absolute; top: 80%; left: 25%;">home</a>
+</body>
+
+</html>
