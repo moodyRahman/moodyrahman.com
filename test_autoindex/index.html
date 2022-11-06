@@ -1,0 +1,110 @@
+<!-- hello! 
+
+  this is an eXtensible Stylesheet Language Template 
+
+  nginx generates XML that corresponds to the directory being autoindexed
+  and uses this template (written by me, Moody Rahman) to render HTML 
+  according to the XML. 
+
+  Now even autoindexed directories fit my site palette :) 
+
+  nginx also sets the content type response header for .xslt files to text/plain
+  so anyone can easily view in browser my XSL template 
+-->
+
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    </meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </meta>
+    <title>Directory</title>
+
+    <link rel="stylesheet" href="/style.css">
+    </link>
+    <style>
+        div.grid {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: [name] 33% [size] 33% [data] 33%;
+            grid-template-rows: [dirheader] 25% [dirs] 25% [fileheader] 25% [files] 25%;
+        }
+
+        div.dirhead {
+            grid-column: name data;
+            grid-row: dirheader;
+        }
+        div.dirbody {
+            grid-column: name data;
+            grid-row: dirs;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            document.querySelector(".current").innerHTML = `currently viewing ${window.location.pathname}`
+
+            const sufixes = ['bytes', 'kb', 'mb', 'bg', 'tb', 'pb', 'eb', 'zb', 'yb'];
+            const getBytes = (bytes) => {
+                const i = Math.floor(Math.log(bytes) / Math.log(1024));
+                return !bytes && '0 Bytes' || (bytes / Math.pow(1024, i)).toFixed(2) + " " + sufixes[i];
+            };
+
+            document.querySelectorAll("td:nth-child(3)").forEach((e) => {
+                e.innerHTML = getBytes(parseInt(e.innerHTML))
+            })
+
+            function padTo2Digits(num) {
+                return num.toString().padStart(2, '0');
+            }
+
+            function formatDate(date) {
+                return (
+                    [
+                        date.getFullYear(),
+                        padTo2Digits(date.getMonth() + 1),
+                        padTo2Digits(date.getDate()),
+                    ].join('-') +
+                    ' ' +
+                    [
+                        padTo2Digits(date.getHours()),
+                        padTo2Digits(date.getMinutes()),
+                        padTo2Digits(date.getSeconds()),
+                    ].join(':')
+                );
+            }
+
+            document.querySelectorAll("td:nth-child(2)").forEach((e) => {
+                e.innerHTML = formatDate(new Date(e.innerHTML))
+            })
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="current highlight">
+        pls enable javascript ;;-;
+    </div>
+
+    <div class="grid">
+        <div class="dirhead">
+            folders!
+        </div>
+        <div class="dirbody">
+            <div class="dirname">hello!</div>
+            <div class="dirname">hello!</div>
+            <div class="dirname">hello!</div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

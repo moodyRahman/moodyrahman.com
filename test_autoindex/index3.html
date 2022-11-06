@@ -1,0 +1,136 @@
+<!-- hello! 
+
+  this is an eXtensible Stylesheet Language Template 
+
+  nginx generates XML that corresponds to the directory being autoindexed
+  and uses this template (written by me, Moody Rahman) to render HTML 
+  according to the XML. 
+
+  Now even autoindexed directories fit my site palette :) 
+
+  nginx also sets the content type response header for .xslt files to text/plain
+  so anyone can easily view in browser my XSL template 
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    </meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </meta>
+    <title>Directory</title>
+
+    <link rel="stylesheet" href="/style.css">
+    </link>
+    <style>
+
+        div.autoindex {
+            width: 75%;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        td {
+            width: 25%;
+        }
+
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            document.querySelector(".current").innerHTML = `currently viewing ${window.location.pathname}`
+
+            const sufixes = ['bytes', 'kb', 'mb', 'bg', 'tb', 'pb', 'eb', 'zb', 'yb'];
+            const getBytes = (bytes) => {
+                const i = Math.floor(Math.log(bytes) / Math.log(1024));
+                return !bytes && '0 Bytes' || (bytes / Math.pow(1024, i)).toFixed(2) + " " + sufixes[i];
+            };
+
+            document.querySelectorAll("div.filesize").forEach((e) => {
+                e.innerHTML = getBytes(parseInt(e.innerHTML))
+            })
+
+            function padTo2Digits(num) {
+                return num.toString().padStart(2, '0');
+            }
+
+            function formatDate(date) {
+                return (
+                    [
+                        date.getFullYear(),
+                        padTo2Digits(date.getMonth() + 1),
+                        padTo2Digits(date.getDate()),
+                    ].join('-') +
+                    ' ' +
+                    [
+                        padTo2Digits(date.getHours()),
+                        padTo2Digits(date.getMinutes()),
+                        padTo2Digits(date.getSeconds()),
+                    ].join(':')
+                );
+            }
+
+            document.querySelectorAll("div.date").forEach((e) => {
+                e.innerHTML = formatDate(new Date(e.innerHTML))
+            })
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="current highlight">
+        pls enable javascript ;;-;
+    </div>
+
+    <div class="autoindex">
+        <table>
+            <tr>
+                <td>
+                    folder
+                </td>
+                <td>
+                    date modified
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    moody
+                </td>
+                <td class="date">
+                    2021-12-01T03:23:41Z
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    moody
+                </td>
+                <td class="date">
+                    2021-12-01T03:23:41Z
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    moody
+                </td>
+                <td class="date">
+                    2021-12-01T03:23:41Z
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+</body>
+
+</html>
