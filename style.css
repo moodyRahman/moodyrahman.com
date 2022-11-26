@@ -11,6 +11,10 @@ p {
         margin-top: 50px;
     }
 
+    .things{
+        font-size:0.9rem;
+    }
+
     footer{
         display:none;
     }

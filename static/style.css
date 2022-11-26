@@ -28,6 +28,7 @@ h4 {
 }
 
 .section {
+    display:block;
     padding-bottom: 2rem;
 }
 
