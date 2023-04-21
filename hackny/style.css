@@ -5,10 +5,26 @@ body {
     background:var(--bg-color);
     font-size: 1rem;
 }
-.response{
-    padding-left: 4%;
-    font-size: 1rem;
-    color: var(--text-color)
+
+.projects {
+    display: flex;
+    flex-direction:column;
+    width: 75%;
+    align-items: flex-start;
+}
+
+.proj-link {
+    width: auto;
+    font-size:1.2rem;
+    background: var(--accent);
+    color:var(--bg-color);
+    padding-left:15px;
+    padding-right:15px;
+    margin: 20px;
+}
+
+.proj-link:hover {
+    filter: brightness(150%);
 }
 
 @media (max-width: 600px) {

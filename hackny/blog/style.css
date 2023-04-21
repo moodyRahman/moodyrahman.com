@@ -1,0 +1,6 @@
+@import url("../style.css");
+
+pre {
+    width: 75%;
+    white-space: pre-wrap;
+}
