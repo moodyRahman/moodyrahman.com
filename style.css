@@ -58,7 +58,6 @@ p {
   padding-right: 5px;
   margin: 10px;
   display: inline-block;
-  flex: auto auto 1;
 }
 
 .proj-link:hover {
