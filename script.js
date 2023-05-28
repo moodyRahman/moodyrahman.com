@@ -1,11 +1,11 @@
 let colors = [
     {
-    "bg-color": "#07093c",
-    "text-color": "#FFF8E7",
-    "accent": "#FFF8E7",
-    "icon": "#FFF8E7",
-    "name": "cosmic"
-},
+        "bg-color": "#07093c",
+        "text-color": "#FFF8E7",
+        "accent": "#FFF8E7",
+        "icon": "#FFF8E7",
+        "name": "cosmic"
+    },
     {
         "bg-color": "#8D6B94",
         "text-color": "#E8DBC5",
@@ -97,32 +97,48 @@ let colors = [
         "icon": "#8FD5A6",
         "name": "verdant"
     },
-    
-]
 
-let done = []
-const orig = colors.length
-const element = document.getElementById("lucky")
+];
+
+let done = [];
+const orig = colors.length;
+const element = document.getElementById("lucky");
 const lucky = (e) => {
 
     if (done.length === orig) {
-        colors = [... done]
-        done.length = 0
+        colors = [...done];
+        done.length = 0;
     }
 
 
-    const color = colors[Math.floor(Math.random()*colors.length)];
-    colors.splice(colors.indexOf(color), 1)
-    done.push(color)
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    colors.splice(colors.indexOf(color), 1);
+    done.push(color);
 
     for (const key in color) {
         document.documentElement.style.setProperty(`--${key}`, color[key]);
     }
 
-    element.innerHTML = `im feelin' <i>${color.name}</i>`
+    element.querySelector("span").innerHTML = `im feelin' <i>${color.name}</i>`;
+};
 
 
-}
+element.addEventListener("click", lucky);
 
 
-element.addEventListener("click", lucky)
+const buttons = document.querySelectorAll(".proj-link");
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", (e) => {
+        const t = button.querySelector(".tool-tip");
+        t.style.display = "inline";
+        !button.classList.contains("active") ? (() => { button.classList.add("active"); e.preventDefault() })() : void (0);
+    })
+
+    // const tip = button.querySelector(".tool-tip");
+    // button.addEventListener("mouseover", starter(tip));
+    // button.addEventListener("touchstart", starter(tip));
+    // button.addEventListener("mouseout", ender(tip));
+    // button.addEventListener("touchend", ender(tip));
+});

@@ -1,77 +1,99 @@
 @import url("/static/style.css");
 
 p {
-    margin: 0px;
+  margin: 0px;
 }
 
 @media (max-width: 600px) {
-    body{
-        margin-left: 10px; 
-        margin-right: 10px; 
-        margin-top: 50px;
-    }
+  body {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+  }
 
-    .things{
-        font-size:0.9rem;
-    }
+  .things {
+    font-size: 0.9rem;
+  }
 
-    footer{
-        display:none;
-    }
+  footer {
+    display: none;
+  }
 }
 
 @media (min-width: 600px) {
-    body{
-        font-size: 24px;
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 5%;
-    }
-    footer{
-        z-index:2;
-        width:90%;
-        position:absolute;
-        bottom:10px;
-    }
+  body {
+    font-size: 24px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+  }
+  footer {
+    z-index: 2;
+    width: 90%;
+    position: absolute;
+    bottom: 10px;
+  }
 }
 
-
 @media (max-height: 700px) {
-    footer{
-        display:none;
-    }
+  footer {
+    display: none;
+  }
 }
 
 .projects {
-    display: flex;
-    flex-wrap: wrap;
-    width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 75%;
 }
 
 .proj-link {
-    width: auto;
-    background: var(--accent);
-    color:var(--bg-color);
-    padding-left:5px;
-    padding-right:5px;
-    margin: 10px;
+  width: auto;
+  height: auto;
+  background: var(--accent);
+  color: var(--bg-color);
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  display: inline-block;
+  flex: auto auto 1;
 }
 
 .proj-link:hover {
-    filter: brightness(150%);
+  filter: brightness(150%);
+}
+
+.active {
+}
+
+.tool-tip {
+  display: none;
+  color: var(--bg-color);
+  font-size: 0.7em;
+  width: 75%;
+}
+
+/* .tool-tip > *:nth-child(1) {
+  width: 75%;
+} */
+
+.tool-tip > *:nth-child(2) {
+  font-style: italic;
 }
 
 .fa-reddit {
-    background: var(--bg-color);
-    color: var(--icon);
+  background: var(--bg-color);
+  color: var(--icon);
 }
 
 .fa-github-alt {
-    background: var(--bg-color);
-    color: var(--icon);
+  background: var(--bg-color);
+  color: var(--icon);
 }
 
 .fa-linkedin {
-    background: var(--bg-color);
-    color: var(--icon);
+  background: var(--bg-color);
+  color: var(--icon);
 }
