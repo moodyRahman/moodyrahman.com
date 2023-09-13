@@ -7,15 +7,15 @@ let colors = [
         "name": "cosmic"
     },
     {
-        "bg-color": "#8D6B94",
-        "text-color": "#E8DBC5",
-        "accent": "#B185A7",
+        "bg-color": "#795879",
+        "text-color": "#E8E8E8",
+        "accent": "#E9DDE7",
         "icon": "#C3A29E",
         "name": "fairy-like"
     },
     {
         "bg-color": "#000000",
-        "text-color": "#CF0A0A",
+        "text-color": "#F41515",
         "accent": "#EEEEEE",
         "icon": "#DC5F00",
         "name": "evil"
@@ -23,16 +23,9 @@ let colors = [
     {
         "bg-color": "#182747",
         "text-color": "#D8D8D8",
-        "accent": "#647E68",
+        "accent": "#7E9A84",
         "icon": "#D8D8D8",
         "name": "aquatic"
-    },
-    {
-        "bg-color": "#EBCFB2",
-        "text-color": "#424B54",
-        "accent": "#D5ACA9",
-        "icon": "#B38D97",
-        "name": "camouflaged"
     },
     {
         "bg-color": "#272727",
@@ -43,7 +36,7 @@ let colors = [
     },
     {
         "bg-color": "#EDBFC6",
-        "text-color": "#AF8D86",
+        "text-color": "#654B43",
         "accent": "#5F4842",
         "icon": "#432E36",
         "name": "psittacina"
@@ -51,12 +44,12 @@ let colors = [
     {
         "bg-color": "#006d77",
         "text-color": "#edf6f9",
-        "accent": "#83c5be",
+        "accent": "#C7E6E4",
         "icon": "#e29578",
         "name": "rainy, but like, in a nice way"
     },
     {
-        "bg-color": "#5288f2",
+        "bg-color": "#1155DF",
         "text-color": "#1C1018",
         "accent": "#ffe700",
         "icon": "#04c4ec",
@@ -64,33 +57,27 @@ let colors = [
     },
     {
         "bg-color": "#3a2558",
-        "text-color": "#8d71b4",
-        "accent": "#573b79",
-        "icon": "#6a518a",
+        "text-color": "#C3B7D7",
+        "accent": "#A592C9",
+        "icon": "#6a518a",    
         "name": "pulsating"
     },
     {
-        "bg-color": "#da0000",
+        "bg-color": "#F00000",
         "text-color": "#000000",
-        "accent": "#ff4546",
+        "accent": "#FFEBEB",
         "icon": "#ff3938",
         "name": "wretched"
     },
     {
-        "bg-color": "#ee6969",
-        "text-color": "#fde0e0",
-        "accent": "#f4c1c1",
+        "bg-color": "#fc9f9f",
+        "text-color": "#424242",
+        "accent": "#791616",
         "icon": "#fdaaaa",
         "name": "like bubblegum"
     },
     {
         "bg-color": "#e34029",
-        "text-color": "#f0d5ac",
-        "accent": "#f0d5ac",
-        "icon": "#f0d5ac",
-        "name": "dusky"
-    },
-    {
         "bg-color": "#0D5D56",
         "text-color": "#8FD5A6",
         "accent": "#329F5B",
