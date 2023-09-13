@@ -18,6 +18,12 @@ p {
   footer {
     display: none;
   }
+
+  .recolor_icon {
+    filter: invert(23%) sepia(8%) saturate(2625%) hue-rotate(181deg)
+      brightness(94%) contrast(87%);
+    width: 30px;
+  }
 }
 
 @media (min-width: 600px) {
@@ -32,6 +38,12 @@ p {
     width: 90%;
     position: absolute;
     bottom: 10px;
+  }
+
+  .recolor_icon {
+    filter: invert(23%) sepia(8%) saturate(2625%) hue-rotate(181deg)
+      brightness(94%) contrast(87%);
+    width: 2%;
   }
 }
 
