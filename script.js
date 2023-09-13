@@ -130,7 +130,7 @@ const buttons = document.querySelectorAll(".proj-link");
 
 buttons.forEach(button => {
 
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", async (e) => {
         const t = button.querySelector(".tool-tip");
         t.style.display = "inline";
         !button.classList.contains("active") ? (() => { button.classList.add("active"); e.preventDefault() })() : void (0);
