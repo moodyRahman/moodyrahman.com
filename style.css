@@ -71,6 +71,12 @@ p {
   margin: 0px;
 }
 
+.recolor_icon {
+  filter: invert(23%) sepia(8%) saturate(2625%) hue-rotate(181deg)
+    brightness(94%) contrast(87%);
+  aspect-ratio: 1 / 1;
+}
+
 @media (max-width: 600px) {
   body {
     margin-left: 10px;
@@ -87,8 +93,6 @@ p {
   }
 
   .recolor_icon {
-    filter: invert(23%) sepia(8%) saturate(2625%) hue-rotate(181deg)
-      brightness(94%) contrast(87%);
     width: 30px;
   }
 }
@@ -108,8 +112,6 @@ p {
   }
 
   .recolor_icon {
-    filter: invert(23%) sepia(8%) saturate(2625%) hue-rotate(181deg)
-      brightness(94%) contrast(87%);
     width: 2%;
   }
 }
