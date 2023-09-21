@@ -59,7 +59,7 @@ let colors = [
         "bg-color": "#3a2558",
         "text-color": "#C3B7D7",
         "accent": "#A592C9",
-        "icon": "#6a518a",    
+        "icon": "#6a518a",
         "name": "pulsating"
     },
     {
@@ -83,6 +83,14 @@ let colors = [
         "accent": "#329F5B",
         "icon": "#8FD5A6",
         "name": "verdant"
+    },
+    {
+        "bg-color": "#000000",
+        "text-color": "#008F11",
+        "accent": "#008F11",
+        "icon": "#008F11",
+        "name": "in the matrix"
+
     },
 
 ];
