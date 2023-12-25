@@ -1,0 +1,30 @@
+{
+    "short_name": "Flunge",
+    "name": "Flunge: Interval Timer",
+    "start_url": "/flunge",
+    "background_color": "#3367D6",
+    "display": "fullscreen",
+    "theme_color": "#3367D6",
+    "description": "Weather forecast information",
+    "prefer_related_applications":false,
+    "icons": [
+        {
+          "src": "https://moodyrahman.com/files/512-icon.png",
+          "sizes": "512x512"
+        },
+        {
+            "src": "https://moodyrahman.com/files/192-icon.png",
+            "sizes": "192x192"
+          }
+      ],
+      "screenshots": [
+        {
+          "src": "https://moodyrahman.com/files/mobile_example.png",
+          "type": "image/png",
+          "sizes": "369x761"
+        }
+      ]
+    
+      
+}
+  
