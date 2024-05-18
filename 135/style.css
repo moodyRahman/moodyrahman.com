@@ -30,6 +30,8 @@ table {
   width: 100%;
   overflow-x: auto;
   font-weight: 200;
+  font-family: "Helvetica", "Arial", sans-serif;
+
 }
 
 td {
