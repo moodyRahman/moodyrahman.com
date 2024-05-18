@@ -29,7 +29,7 @@ h3 {
 table {
   width: 100%;
   overflow-x: auto;
-  font-weight: 200;
+  font-weight: 400;
   font-family: "Helvetica", "Arial", sans-serif;
 
 }
@@ -49,11 +49,10 @@ td {
   body {
     margin-left: 1%;
     margin-right: 1%;
-    margin-bottom: 0%;
+    margin-bottom: 10%;
   }
 
   p {
-    font-family: "Helvetica", "Arial", sans-serif;
     font-size: 1rem;
     margin-top: 5px;
   }
@@ -70,25 +69,5 @@ td {
     margin-top: 3%;
   }
 
-  h3 {
-    display: block;
-  }
 
-  table {
-    width: 100%;
-    overflow-x: auto;
-    font-weight: 400;
-    font-family: "Helvetica", "Arial", sans-serif;
-  }
-
-  td {
-    text-align: left;
-    vertical-align: top;
-    padding: 10px;
-  }
-
-  .highlight > a {
-    text-decoration: none;
-    color: inherit;
-  }
 }
