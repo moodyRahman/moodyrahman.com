@@ -1,0 +1,7 @@
+Variables, Arithmetic,  PS First Do It By Hand, Input and Output, 
+Boolean Variables and Operators, The if Statement Comparing Numbers and Strings, 
+Multiple Alternatives, Nested Branches, Application: Input Validation
+
+Strings, Arrays
+
+while loops, for loops, do-while loops, input processing
