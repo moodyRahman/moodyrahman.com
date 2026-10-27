@@ -122,19 +122,19 @@ element.addEventListener("click", lucky);
 
 
 let fallen = false;
-const GRAVITY = 0.5;
 
 const collapse = (e) => {
     e.preventDefault();
     if (fallen) return;
     fallen = true;
 
+    const { Engine, Runner, Bodies, Body, Composite, Events } = Matter;
+
     const root = document.documentElement;
     const viewport = window.innerHeight;
     const startHeight = Math.max(root.scrollHeight, viewport);
-    // the floor is always the bottom edge of what's on screen, so it moves as you scroll
+    const width = root.clientWidth;
     const getFloor = () => window.scrollY + window.innerHeight;
-    let floor = getFloor();
 
     // measure everything before pulling anything out of the layout
     const pieces = [...document.querySelectorAll("p, h4, .proj-link, .section > a")].map(el => {
@@ -152,75 +152,75 @@ const collapse = (e) => {
     document.body.style.height = `${startHeight + viewport * 2}px`;
     root.style.overflowX = "hidden";
 
+    const engine = Engine.create({positionIterations:10, velocityIterations:10});
+    engine.gravity.y = 0.5
+
+    // the floor is the bottom edge of what's on screen, so it moves as you scroll.
+    // it's thick so fast scrolling can't tunnel things through it.
+    const THICK = 2000;
+    const floor = Bodies.rectangle(width / 2, getFloor() + THICK / 2, width * 4, THICK, { isStatic: true });
+    const wallL = Bodies.rectangle(-THICK / 2, startHeight, THICK, startHeight * 10, { isStatic: true });
+    const wallR = Bodies.rectangle(width + THICK / 2, startHeight, THICK, startHeight * 10, { isStatic: true });
+    Composite.add(engine.world, [floor, wallL, wallR]);
+
     for (const p of pieces) {
         const s = p.el.style;
         s.position = "absolute";
-        s.left = `${p.x}px`;
+        s.left = "0px";
         s.top = "0px";
         s.width = `${p.w}px`;
         s.margin = "0";
         s.boxSizing = "border-box";
         s.zIndex = "1";
-        p.dy = p.y;
-        // a small hop up before gravity takes over
-        p.vy = -(5 + Math.random() * 2);
-        // and a random push left or right, so they don't all land in one pile
-        p.vx = (Math.random() - 0.5) * 12;
-        p.dx = 0;
-        p.rot = 0;
-        p.vrot = (Math.random() - 0.5) * 0.8;
-        p.delay = Math.random() * 15;
-        p.settled = false;
-        s.transform = `translate(${p.dx}px, ${p.dy}px)`;
+
+        p.body = Bodies.rectangle(p.x + p.w / 2, p.y + p.h / 2, p.w, p.h, {
+            restitution: 0.3,
+            friction: 0.1,
+            frictionAir: 0.01,
+        });
+        // held in place until its turn to fall
+        Body.setStatic(p.body, true);
+        Composite.add(engine.world, p.body);
+
+        setTimeout(() => {
+            Body.setStatic(p.body, false);
+            // a small hop up and a random push, so they don't all land in one pile
+            Body.setVelocity(p.body, { x: (Math.random() - 0.5) * 12, y: -(5 + Math.random() * 2) });
+            Body.setAngularVelocity(p.body, (Math.random() - 0.5) * 0.1);
+        }, Math.random() * 250);
     }
 
-    let frame = 0;
+    Events.on(engine, "beforeUpdate", () => {
+        Body.setPosition(floor, { x: width / 2, y: getFloor() + THICK / 2 });
+    });
 
-    const tick = () => {
-        frame++;
-
-        floor = getFloor();
-
+    Events.on(engine, "afterUpdate", () => {
         for (const p of pieces) {
-            if (frame < p.delay) continue;
-
-            // the floor dropped away (scrolled down): start falling again
-            if (p.settled && p.dy + p.h < floor - 0.5) {
-                p.settled = false;
-                p.vy = 0;
-            }
-            if (p.settled && Math.abs(p.vx) < 0.05 && Math.abs(p.dy + p.h - floor) <= 0.5) continue;
-
-            if (!p.settled) {
-                p.vy += GRAVITY;
-                p.dy += p.vy;
-                p.rot += p.vrot;
-            } else {
-                // sliding along the floor
-                p.vx *= 0.9;
-                p.vrot *= 0.9;
-            }
-
-            p.dx += p.vx;
-            // stay on the page, bouncing off the side edges
-            const minDx = -p.x;
-            const maxDx = root.clientWidth - p.x - p.w;
-            if (p.dx < minDx) { p.dx = minDx; p.vx = Math.abs(p.vx) * 0.5; }
-            if (p.dx > maxDx) { p.dx = maxDx; p.vx = -Math.abs(p.vx) * 0.5; }
-            if (p.settled && Math.abs(p.vx) < 0.05) p.vx = 0;
-
-            // landing, or the floor rising (scrolled up) and carrying it along
-            if (p.dy + p.h >= floor) {
-                p.dy = floor - p.h;
-                p.vy = 0;
-                p.settled = true;
-            }
-            p.el.style.transform = `translate(${p.dx}px, ${p.dy}px) rotate(${p.rot}deg)`;
+            const { x, y } = p.body.position;
+            p.el.style.transform = `translate(${x - p.w / 2}px, ${y - p.h / 2}px) rotate(${p.body.angle}rad)`;
         }
+    });
 
-        requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+    for (const p of pieces) {
+        p.el.style.transform = `translate(${p.x}px, ${p.y}px)`;
+    }
+
+    // elements can change size after they fall (e.g. a tooltip opening on click),
+    // so keep each body matched to its element's current size
+    const resizer = new ResizeObserver(entries => {
+        for (const entry of entries) {
+            const p = pieces.find(piece => piece.el === entry.target);
+            const w = p.el.offsetWidth;
+            const h = p.el.offsetHeight;
+            if (Math.abs(w - p.w) < 1 && Math.abs(h - p.h) < 1) continue;
+            Body.scale(p.body, w / p.w, h / p.h);
+            p.w = w;
+            p.h = h;
+        }
+    });
+    for (const p of pieces) resizer.observe(p.el);
+
+    Runner.run(Runner.create(), engine);
 };
 
 document.getElementById("fall").addEventListener("click", collapse);
