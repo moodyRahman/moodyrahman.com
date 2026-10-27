@@ -122,10 +122,17 @@ element.addEventListener("click", lucky);
 
 
 let fallen = false;
+let restore = null;
+// width the project list takes up in normal flow, which is as wide as an opened link can get
+let projectsWidth = 0;
 
 const collapse = (e) => {
     e.preventDefault();
-    if (fallen) return;
+    // a second click sends everything back where it started
+    if (fallen) {
+        if (restore) restore();
+        return;
+    }
     fallen = true;
 
     const { Engine, Runner, Bodies, Body, Composite, Events } = Matter;
@@ -137,6 +144,7 @@ const collapse = (e) => {
     const getFloor = () => window.scrollY + window.innerHeight;
 
     // measure everything before pulling anything out of the layout
+    projectsWidth = document.querySelector(".projects").getBoundingClientRect().width;
     const pieces = [...document.querySelectorAll("p, h4, .proj-link, .section > a")].map(el => {
         const r = el.getBoundingClientRect();
         return {
@@ -173,6 +181,8 @@ const collapse = (e) => {
         s.boxSizing = "border-box";
         s.zIndex = "1";
 
+        p.origW = p.w;
+        p.wasActive = p.el.classList.contains("active");
         p.body = Bodies.rectangle(p.x + p.w / 2, p.y + p.h / 2, p.w, p.h, {
             restitution: 0.3,
             friction: 0.1,
@@ -220,7 +230,44 @@ const collapse = (e) => {
     });
     for (const p of pieces) resizer.observe(p.el);
 
-    Runner.run(Runner.create(), engine);
+    const runner = Runner.create();
+    Runner.run(runner, engine);
+
+    restore = () => {
+        restore = null;
+        Runner.stop(runner);
+        resizer.disconnect();
+
+        // put back any link that was opened while it was falling, so it doesn't fly home oversized
+        for (const p of pieces) {
+            if (p.wasActive || !p.el.classList.contains("active")) continue;
+            p.el.classList.remove("active");
+            const tip = p.el.querySelector(".tool-tip");
+            if (tip) tip.style.display = "";
+            p.el.style.width = `${p.origW}px`;
+            p.el.style.maxWidth = "";
+        }
+
+        // fly each piece from wherever it landed back to its original spot
+        for (const p of pieces) {
+            const delay = Math.random() * 300;
+            p.el.style.transition = `transform 700ms ease-in-out ${delay}ms`;
+            p.el.style.transform = `translate(${p.x}px, ${p.y}px) rotate(0rad)`;
+        }
+
+        // once they're home, hand the elements back to normal layout so it can all fall again
+        setTimeout(() => {
+            for (const p of pieces) {
+                const s = p.el.style;
+                for (const prop of ["position", "left", "top", "width", "maxWidth", "margin", "boxSizing", "zIndex", "transform", "transition"]) {
+                    s[prop] = "";
+                }
+            }
+            document.body.style.height = "";
+            root.style.overflowX = "";
+            fallen = false;
+        }, 1100);
+    };
 };
 
 document.getElementById("fall").addEventListener("click", collapse);
@@ -231,8 +278,16 @@ const buttons = document.querySelectorAll(".proj-link");
 buttons.forEach(button => {
 
     button.addEventListener("click", async (e) => {
+        // everything is flying home, don't reopen anything mid-flight
+        if (fallen && !restore) return;
         const t = button.querySelector(".tool-tip");
         t.style.display = "inline";
+        if (fallen && button.style.position === "absolute") {
+            // out of the flow, a fixed width would just make the tooltip wrap into a tall box,
+            // so let it size to its content like it would in the normal layout
+            button.style.width = "auto";
+            button.style.maxWidth = `${projectsWidth}px`;
+        }
         !button.classList.contains("active") ? (() => { button.classList.add("active"); e.preventDefault() })() : void (0);
     })
 
