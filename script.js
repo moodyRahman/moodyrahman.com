@@ -123,7 +123,7 @@ element.addEventListener("click", lucky);
 
 let fallen = false;
 let restore = null;
-// width the project list takes up in normal flow, which is as wide as an opened link can get
+// widest an opened link can get, which is what it would take up in normal flow
 let projectsWidth = 0;
 
 const collapse = (e) => {
@@ -144,7 +144,9 @@ const collapse = (e) => {
     const getFloor = () => window.scrollY + window.innerHeight;
 
     // measure everything before pulling anything out of the layout
-    projectsWidth = document.querySelector(".projects").getBoundingClientRect().width;
+    // an opened link can be as wide as the project list minus its own side margins
+    const margins = parseFloat(getComputedStyle(document.querySelector(".proj-link")).marginLeft) * 2;
+    projectsWidth = document.querySelector(".projects").getBoundingClientRect().width - margins;
     const pieces = [...document.querySelectorAll("p, h4, .proj-link, .section > a")].map(el => {
         const r = el.getBoundingClientRect();
         return {
@@ -160,8 +162,8 @@ const collapse = (e) => {
     document.body.style.height = `${startHeight + viewport * 2}px`;
     root.style.overflowX = "hidden";
 
-    const engine = Engine.create({positionIterations:10, velocityIterations:10});
-    engine.gravity.y = 0.5
+    const engine = Engine.create({ positionIterations: 40, velocityIterations: 40, constraintIterations: 4 });
+    engine.gravity.y = 1.8
 
     // the floor is the bottom edge of what's on screen, so it moves as you scroll.
     // it's thick so fast scrolling can't tunnel things through it.
@@ -184,9 +186,11 @@ const collapse = (e) => {
         p.origW = p.w;
         p.wasActive = p.el.classList.contains("active");
         p.body = Bodies.rectangle(p.x + p.w / 2, p.y + p.h / 2, p.w, p.h, {
-            restitution: 0.3,
-            friction: 0.1,
-            frictionAir: 0.01,
+            restitution: 0,
+            friction: 0.4,
+            frictionStatic: 1,
+            frictionAir: 0.002,
+            slop: 0.01,
         });
         // held in place until its turn to fall
         Body.setStatic(p.body, true);
@@ -195,8 +199,8 @@ const collapse = (e) => {
         setTimeout(() => {
             Body.setStatic(p.body, false);
             // a small hop up and a random push, so they don't all land in one pile
-            Body.setVelocity(p.body, { x: (Math.random() - 0.5) * 12, y: -(5 + Math.random() * 2) });
-            Body.setAngularVelocity(p.body, (Math.random() - 0.5) * 0.1);
+            Body.setVelocity(p.body, { x: (Math.random() - 0.5) * 4, y: -(1 + Math.random()) });
+            Body.setAngularVelocity(p.body, (Math.random() - 0.5) * 0.03);
         }, Math.random() * 250);
     }
 
